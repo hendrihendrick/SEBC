@@ -1,10 +1,12 @@
 AWS LIST
 
-Name : HendrickInstance1
-Instance ID: i-0ea6af834ec154275
-Public DNS IPV4: ec2-54-169-33-58.ap-southeast-1.compute.amazonaws.com
-IPV4 Public IP: 54.169.33.58
-key Name: awsKeyPair2
+## Instance List
+
+|Instance Name | Instance ID | Public DNS IPV4 | IPV4 Public IP | key Name | OS |
+|----------|----------|----------|----------|----------|----------|
+|HendrickInstance1| i-0ea6af834ec154275 | ec2-54-169-33-58.ap-southeast-1.compute.amazonaws.com | 54.169.33.58 | awsKeyPair2 | CentOS 7|
+|HendrickInstance2| i-06ffe80ed7dc97714 | ec2-3-0-145-67.ap-southeast-1.compute.amazonaws.com | 3.0.145.67 | awsKeyPair3 | CentOS 7|
+|HendrickInstance3| i-0d36fd715c996643b | ec2-54-169-159-1.ap-southeast-1.compute.amazonaws.com| 54.169.159.1 | awsKeyPair4 | CentOS 7|
 
 ## Connect to SSH And disk Check
 ```
@@ -48,13 +50,52 @@ repolist: 11.414
 [root@ip-172-31-29-233 centos]# 
 ```
 
+##Add User to Group
+```
+[centos@ip-172-31-29-233 ~]$ sudo groupadd hackers
+[centos@ip-172-31-29-233 ~]$ sudo usermod -a -G hackers basuki
+[centos@ip-172-31-29-233 ~]$ sudo usermod -a -G crackers purnama
+usermod: group 'crackers' does not exist
+[centos@ip-172-31-29-233 ~]$ sudo groupadd crackers
+[centos@ip-172-31-29-233 ~]$ sudo usermod -a -G crackers purnama
+[centos@ip-172-31-29-233 ~]$ 
+```
+
+##User in the group
+```
+[centos@ip-172-31-26-169 ~]$ su - basuki
+Password: 
+Last failed login: Jum Jan 10 07:50:20 UTC 2020 on pts/0
+There was 1 failed login attempt since the last successful login.
+[basuki@ip-172-31-26-169 ~]$ groups
+basuki hackers
+[basuki@ip-172-31-26-169 ~]$ su - purnama
+Password: 
+[purnama@ip-172-31-26-169 ~]$ groups
+purnama crackers
+
+```
+
+##List /etc/passwd
+```
+[centos@ip-172-31-29-233 ~]$ sudo cat /etc/passwd | grep basuki
+basuki:x:2800:2800::/home/basuki:/bin/bash
+[centos@ip-172-31-29-233 ~]$ sudo cat /etc/passwd | grep purnama
+purnama:x:2700:2700::/home/purnama:/bin/bash
+
+```
+
+##List /etc/group
+```
+[centos@ip-172-31-29-233 ~]$ sudo cat /etc/group | grep hackers
+hackers:x:2801:basuki
+[centos@ip-172-31-29-233 ~]$ sudo cat /etc/group | grep crackers
+crackers:x:2802:purnama
+
+```
+
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-Name : HendrickInstance2
-Instance ID: i-06ffe80ed7dc97714
-Public DNS IPV4: ec2-3-0-145-67.ap-southeast-1.compute.amazonaws.com
-IPV4 Public IP: 3.0.145.67
-key Name: awsKeyPair3
 
 ## Connect to SSH and disk Check
 ```
@@ -103,13 +144,40 @@ repolist: 11.414
 [centos@ip-172-31-26-169 ~]$ 
 ```
 
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+##User in the group
+```
+[centos@ip-172-31-26-169 ~]$ su - basuki
+Password: 
+Last failed login: Jum Jan 10 07:50:20 UTC 2020 on pts/0
+There was 1 failed login attempt since the last successful login.
+[basuki@ip-172-31-26-169 ~]$ groups
+basuki hackers
+[basuki@ip-172-31-26-169 ~]$ su - purnama
+Password: 
+[purnama@ip-172-31-26-169 ~]$ groups
+purnama crackers
 
-Name : HendrickInstance3
-Instance ID: i-0d36fd715c996643b
-Public DNS IPV4: ec2-54-169-159-1.ap-southeast-1.compute.amazonaws.com
-IPV4 Public IP: 54.169.159.1
-key Name: awsKeyPair4
+```
+
+##List /etc/passwd
+```
+[centos@ip-172-31-26-169 ~]$ sudo cat /etc/passwd | grep basuki
+basuki:x:2800:2800::/home/basuki:/bin/bash
+[centos@ip-172-31-26-169 ~]$ sudo cat /etc/passwd | grep purnama
+purnama:x:2700:2700::/home/purnama:/bin/bash
+[centos@ip-172-31-26-169 ~]$ 
+```
+
+##List /etc/group
+```
+[centos@ip-172-31-26-169 ~]$ sudo cat /etc/group | grep hackers
+hackers:x:2801:basuki
+[centos@ip-172-31-26-169 ~]$ sudo cat /etc/group | grep crackers
+crackers:x:2802:purnama
+```
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ## Connect to SSH and disk check
 ```
@@ -155,4 +223,37 @@ repolist: 11.414
 [centos@ip-172-31-17-15 ~]$ 
 ``` 
 
+##Add User to Group
+```
+[centos@ip-172-31-17-15 ~]$ sudo groupadd hackers
+[centos@ip-172-31-17-15 ~]$ sudo groupadd crackers
+[centos@ip-172-31-17-15 ~]$ sudo usermod -aG hackers basuki
+[centos@ip-172-31-17-15 ~]$ sudo usermod -aG crackers purnama
+```
+
+##User In the Group
+```
+[centos@ip-172-31-17-15 ~]$ groups basuki
+basuki : basuki hackers
+[centos@ip-172-31-17-15 ~]$ groups purnama
+purnama : purnama crackers
+
+```
+
+##List /etc/passwd
+```
+[centos@ip-172-31-17-15 ~]$ sudo cat /etc/passwd | grep purnama
+purnama:x:2700:2700::/home/purnama:/bin/bash
+[centos@ip-172-31-17-15 ~]$ sudo cat /etc/passwd | grep basuki
+basuki:x:2800:2800::/home/basuki:/bin/bash
+```
+
+##List /etc/group
+```
+[centos@ip-172-31-17-15 ~]$ sudo cat /etc/group | grep hackers
+hackers:x:2801:basuki
+[centos@ip-172-31-17-15 ~]$ sudo cat /etc/group | grep crackers
+crackers:x:2802:purnama
+
+```
 
