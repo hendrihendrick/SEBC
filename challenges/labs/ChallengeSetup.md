@@ -40,6 +40,8 @@ updates/7/x86_64                                                           CentO
 repolist: 11.414
 ```
 
+##User add
+```
 [centos@ip-172-31-29-233 ~]$ sudo su root
 [root@ip-172-31-29-233 centos]# useradd -u 2700 purnama
 [root@ip-172-31-29-233 centos]# useradd -u 2800 basuki
@@ -95,10 +97,11 @@ repolist: 11.414
 ```
 
 ## User add 
+```
 [centos@ip-172-31-26-169 ~]$ sudo useradd -u 2700 purnama
 [centos@ip-172-31-26-169 ~]$ sudo useradd -u 2800 basuki
 [centos@ip-172-31-26-169 ~]$ 
-
+```
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -144,11 +147,12 @@ updates/7/x86_64                    CentOS-7 - Updates                     1.010
 repolist: 11.414
 ```
 
-
+##User add
+```
 [centos@ip-172-31-17-15 ~]$ sudo useradd -u 2700 purnama
 [centos@ip-172-31-17-15 ~]$ sudo useradd -u 2800 basuki
 [centos@ip-172-31-17-15 ~]$ ^C
 [centos@ip-172-31-17-15 ~]$ 
- 
+``` 
 
 
